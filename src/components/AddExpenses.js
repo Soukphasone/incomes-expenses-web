@@ -8,6 +8,7 @@ function AddExpenses() {
   const [show, setShow] = useState(false);
   const [amount_expenses, setAmount_expenses] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -16,6 +17,10 @@ function AddExpenses() {
     try {
       const User_id = localStorage.getItem("User_id");
       const Token = localStorage.getItem("Token");
+      if (amount_expenses === "") {
+        setError("ກະລຸນາຕື່ມຈຳນວນເງິນ");
+        return;
+      }
       const response = await axios.post(
         apiLinks.REPORT.REPORT_INC_EXP,
         {
@@ -59,6 +64,7 @@ function AddExpenses() {
                 onChange={(e) => setAmount_expenses(e.target.value)}
               />
             </Form.Group>
+            <div style={{ color: "red", fontSize: "13px", margin:"-10px 0px 10px 15px"}}>{error}</div>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
@@ -77,9 +83,9 @@ function AddExpenses() {
           <Button variant="secondary" onClick={handleClose}>
             ຍົກເລີກ
           </Button>
-          <Button variant="primary" onClick={handleSubmit_Exp}>
+          <button className="bt-add" onClick={handleSubmit_Exp}>
             ບັນທຶກ
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </>

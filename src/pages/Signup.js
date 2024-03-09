@@ -5,30 +5,24 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import { apiLinks } from "../constants/api";
-const Login = () => {
+const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
-  const handleLogin = async () => {
+  const Token = localStorage.getItem("Token");
+  const handleSignup = async () => {
     try {
-      const response = await fetch(apiLinks.REPORT.LOGIN, {
+      const response = await fetch(apiLinks.REPORT.SIGNUP, {
         method: "POST",
         headers: {
+          Authorization: `STORE ${Token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
-        const data = await response.json();
-        const token = data.accessToken;
-        const user_id = data.data._id;
-        const username = data.data.username;
-        localStorage.setItem("Token", token);
-        localStorage.setItem("User_id", user_id);
-        localStorage.setItem("User_name", username);
-        window.location = "/";
+        window.location = "/login";
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -72,17 +66,17 @@ const Login = () => {
           />
         </FloatingLabel>
         {error && <p style={{ color: "red", padding: "10px 10px" }}>{error}</p>}
-        <button className="bt-login" onClick={handleLogin}>
-          ເຂົ້າສູ່ລະບົບ
+        <button className="bt-login" onClick={handleSignup}>
+          ລົງທະບຽນເຂົ້າໃຊ້ງານ
         </button>{" "}
         <div
           style={{
             padding: "15px",
           }}
         >
-          <Nav.Link href="signup">
-            <p>ລົງທະບຽນ</p>
-            <p style={{marginTop:"-35px", color:"red"}}>_________</p>
+          <Nav.Link href="/login">
+            <p>ເຂົ້າສູ່ລະບົບ</p>
+            <p style={{ marginTop: "-35px", color: "red" }}>_________</p>
           </Nav.Link>
         </div>
       </Container>
@@ -90,4 +84,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

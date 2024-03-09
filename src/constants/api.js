@@ -5,6 +5,7 @@ const mainUrl = "https://incomes-expenses.onrender.com";
 
 export const apiLinks = {
   REPORT: {
+    SIGNUP:`${mainUrl}/user`,
     LOGIN:`${mainUrl}/login`,
     REPORT_INC_EXP: `${mainUrl}/incomes_expense`,
     REPORT_Day: `${mainUrl}/reportamout/day`,

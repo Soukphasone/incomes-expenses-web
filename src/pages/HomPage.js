@@ -14,9 +14,7 @@ const HomePage = () => {
       <AddExpenses />
       <RealTimeClock />
       <ReportIn_exToday />
-      <hr />
       <ReportExpesesMonth />
-      <hr />
       <ReportExpesesYear />
     </>
   );

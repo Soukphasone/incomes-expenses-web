@@ -10,11 +10,15 @@ function AddIncomes() {
   const [description, setDescription] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [error, setError] = useState("");
   const handleSubmit_Ic = async () => {
     try {
       const User_id = localStorage.getItem("User_id");
       const Token = localStorage.getItem("Token");
+      if (amount_incomes === "") {
+        setError("ກະລຸນາຕື່ມຈຳນວນເງິນ");
+        return;
+      }
       const response = await axios.post(
         apiLinks.REPORT.REPORT_INC_EXP,
         {
@@ -58,6 +62,7 @@ function AddIncomes() {
                 onChange={(e) => setAmount_incomes(e.target.value)}
               />
             </Form.Group>
+            <div style={{ color: "red", fontSize: "13px", margin:"-10px 0px 10px 15px"}}>{error}</div>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
@@ -76,9 +81,9 @@ function AddIncomes() {
           <Button variant="secondary" onClick={handleClose}>
             ຍົກເລີກ
           </Button>
-          <Button variant="primary" onClick={handleSubmit_Ic}>
+          <button className="bt-add" onClick={handleSubmit_Ic}>
             ບັນທຶກ
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </>

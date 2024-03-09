@@ -10,6 +10,7 @@ function History() {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
+  const User_id = localStorage.getItem("User_id");
   useEffect(() => {
     fetch(
       `${apiLinks.REPORT.REPORT_INC_EXP}?description=${search}&type=${selectedValue}`
@@ -70,17 +71,20 @@ function History() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{numeral(item.amount_incomes_exp).format(0, 0)}</td>
-                <td>{item.description}</td>
-                <td>{item.type}</td>
-                <td>
-                  <Fomatdate mydate={item.date} />
-                </td>
-              </tr>
-            ))}
+            {data.map(
+              (item, index) =>
+                item.user_id === User_id && (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{numeral(item.amount_incomes_exp).format(0, 0)}</td>
+                    <td>{item.description}</td>
+                    <td>{item.type}</td>
+                    <td>
+                      <Fomatdate mydate={item.date} />
+                    </td>
+                  </tr>
+                )
+            )}
           </tbody>
         </Table>
       </Container>

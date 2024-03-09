@@ -38,6 +38,7 @@ function ReportIn_exToday() {
                 {`ຍອດເງິນທີ່ຍັງເຫຼືອ : `}
                 <Format_Money amount={item.Total_Inc - item.Total_Exp} />
               </Col>
+              
             </Row>
           )
       )}

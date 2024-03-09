@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { Fomatdate } from '../helper/suport';
 function RealTimeClock() {
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -15,7 +15,7 @@ function RealTimeClock() {
   return (
     <div style={{padding:"10px 10px"}}>
       <h1>ເວລາປັດຈຸບັນ</h1>
-      <p>{currentTime.toLocaleString()}</p>
+      <p><Fomatdate mydate={currentTime.toLocaleString()}/></p>
     </div>
   );
 }
