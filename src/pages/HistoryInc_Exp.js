@@ -60,10 +60,9 @@ function History() {
       </div>
       <Container>
         <br />
-        <Table responsive="xl">
+        <table >
           <thead>
             <tr>
-              <th>#</th>
               <th>ຈຳນວນເງິນ</th>
               <th>ລາຍລະອຽດ</th>
               <th>ປະເພດ</th>
@@ -75,7 +74,6 @@ function History() {
               (item, index) =>
                 item.user_id === User_id && (
                   <tr key={index}>
-                    <td>{index + 1}</td>
                     <td>{numeral(item.amount_incomes_exp).format(0, 0)}</td>
                     <td>{item.description}</td>
                     <td>{item.type}</td>
@@ -86,7 +84,7 @@ function History() {
                 )
             )}
           </tbody>
-        </Table>
+        </table>
       </Container>
     </div>
   );
