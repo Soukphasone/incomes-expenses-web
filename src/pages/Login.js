@@ -77,12 +77,12 @@ const Login = () => {
         </button>{" "}
         <div
           style={{
-            padding: "15px",
+            padding: "20px",
           }}
         >
           <Nav.Link href="signup">
             <p>ລົງທະບຽນ</p>
-            <p style={{marginTop:"-35px", color:"red"}}>_________</p>
+            <p style={{marginTop:"-35px", color:"red"}}>__________</p>
           </Nav.Link>
         </div>
       </Container>

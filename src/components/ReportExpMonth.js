@@ -12,7 +12,7 @@ function ReportExpesesMonth() {
   useEffect(() => {
     fetchData();
 
-    const interval = setInterval(fetchData, 1000); 
+    const interval = setInterval(fetchData, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -22,22 +22,30 @@ function ReportExpesesMonth() {
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching data:", error));
   };
+  const Report_Inc = () => {
+    return data
+      .filter((item) => item._id === User_id)
+      .reduce((total, item) => (total = item.Total_Inc), 0);
+  };
+  const Report_Exp = () => {
+    return data
+      .filter((item) => item._id === User_id)
+      .reduce((total, item) => (total = item.Total_Exp), 0);
+  };
   return (
-    <Container style={{marginTop:"10px"}}>
-      {data.map(
-        (item, index) =>
-          (item._id === User_id || item._id === "") && (
-            <Row key={index} className="report">
-              <Col
-                md={{ span: 6, offset: 3 }}
-              >{`ລາຍຮັບເດືອນ ${ThisMonth}: `} <Format_Money amount={item.Total_Inc} /></Col>
-              <Col
-                md={{ span: 6, offset: 3 }}
-              >{`ລາຍຈ່າຍເດືອນ ${ThisMonth}:`} <Format_Money amount={item.Total_Exp} /></Col>
-              <Col md={{ span: 6, offset: 3 }}>{`ຍອດເງິນທີ່ຍັງເຫຼືອ : `} <Format_Money amount={item.Total_Inc - item.Total_Exp} /></Col>
-            </Row>
-          )
-      )}
+    <Container style={{ marginTop: "10px" }}>
+      <Row className="report">
+        <Col md={{ span: 6, offset: 3 }}>
+          {`ລາຍຮັບເດືອນ ${ThisMonth}: `} <Format_Money amount={Report_Inc()} />
+        </Col>
+        <Col md={{ span: 6, offset: 3 }}>
+          {`ລາຍຈ່າຍເດືອນ ${ThisMonth}:`} <Format_Money amount={Report_Exp()} />
+        </Col>
+        <Col md={{ span: 6, offset: 3 }}>
+          {`ຍອດເງິນທີ່ຍັງເຫຼືອ : `}{" "}
+          <Format_Money amount={Report_Inc() - Report_Exp()} />
+        </Col>
+      </Row>
     </Container>
   );
 }

@@ -71,12 +71,12 @@ const Signup = () => {
         </button>{" "}
         <div
           style={{
-            padding: "15px",
+            padding: "20px",
           }}
         >
           <Nav.Link href="/login">
             <p>ເຂົ້າສູ່ລະບົບ</p>
-            <p style={{ marginTop: "-35px", color: "red" }}>_________</p>
+            <p style={{ marginTop: "-35px", color: "red" }}>__________</p>
           </Nav.Link>
         </div>
       </Container>
