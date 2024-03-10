@@ -34,7 +34,7 @@ function ReportExpesesYear() {
     <Container style={{ marginTop: "10px" }}>
       <Row className="report">
         <Col md={{ span: 6, offset: 3 }}>
-          {`ລາຍຮັບປີ ${ThisYear()} : `} <Format_Money amount={Report_Inc} />
+          {`ລາຍຮັບປີ ${ThisYear()} : `} <Format_Money amount={Report_Inc()} />
         </Col>
         <Col md={{ span: 6, offset: 3 }}>
           {`ລາຍຈ່າຍປິ ${ThisYear()} :`} <Format_Money amount={Report_Exp()} />
